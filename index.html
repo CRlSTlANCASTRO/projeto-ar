@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>AR - Soma com 3 Marcadores</title>
+    <title>AR - Soma com 3 Marcadores (Otimizado)</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/2.1.8/aframe/build/aframe-ar.min.js"></script>
     <style>
@@ -55,53 +55,61 @@
       <a-entity camera></a-entity>
     </a-scene>
 
-    <!-- Script para Depuração e Operação -->
     <script>
       const debugDiv = document.getElementById('debug');
       const resultText = document.querySelector('#resultText a-text');
-      
-      // Estado dos marcadores
+
+      // Estado global dos marcadores (true = visível, false = oculto)
       const markerStates = {
         marker1: false,
         markerPlus: false,
         marker2: false
       };
-      
-      // Configurar eventos para cada marcador
-      function setupMarkerEvents(markerId) {
+
+      // Tempo de confirmação (em ms) para evitar falsos positivos
+      const CONFIRMATION_DELAY = 300;
+
+      // Configura eventos para cada marcador com confirmação por delay
+      function setupMarkerWithConfirmation(markerId) {
         const marker = document.querySelector(`#${markerId}`);
-        if (marker) {
-          marker.addEventListener('markerFound', () => {
+        let timeoutId;
+
+        marker.addEventListener('markerFound', () => {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
             markerStates[markerId] = true;
             updateResult();
-            updateDebugText();
-          });
-          marker.addEventListener('markerLost', () => {
-            markerStates[markerId] = false;
-            updateResult();
-            updateDebugText();
-          });
-        }
-      }
-      
-      // Inicializar eventos para todos os marcadores
-      Object.keys(markerStates).forEach(setupMarkerEvents);
+            updateDebugInfo();
+          }, CONFIRMATION_DELAY);
+        });
 
+        marker.addEventListener('markerLost', () => {
+          clearTimeout(timeoutId);
+          markerStates[markerId] = false;
+          updateResult();
+          updateDebugInfo();
+        });
+      }
+
+      // Inicializa todos os marcadores
+      Object.keys(markerStates).forEach(setupMarkerWithConfirmation);
+
+      // Atualiza o resultado da soma se todos os marcadores estiverem visíveis
       function updateResult() {
         if (markerStates.marker1 && markerStates.markerPlus && markerStates.marker2) {
           const val1 = parseInt(document.querySelector('#marker1').getAttribute('data-value'));
           const val2 = parseInt(document.querySelector('#marker2').getAttribute('data-value'));
-          const result = val1 + val2;
-          resultText.setAttribute('value', `Resultado: ${result}`);
+          resultText.setAttribute('value', `${val1} + ${val2} = ${val1 + val2}`);
         } else {
           resultText.setAttribute('value', '');
         }
       }
 
-      function updateDebugText() {
-        const visibles = Object.keys(markerStates).filter(id => markerStates[id]);
-        debugDiv.textContent = visibles.length
-          ? `Detectados: ${visibles.join(', ')}`
+      // Atualiza o painel de debug
+      function updateDebugInfo() {
+        const activeMarkers = Object.keys(markerStates).filter(id => markerStates[id]);
+        debugDiv.textContent = activeMarkers.length
+          ? `Marcadores ativos: ${activeMarkers.join(', ')}`
           : 'Nenhum marcador detectado';
       }
     </script>
