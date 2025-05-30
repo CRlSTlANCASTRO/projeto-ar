@@ -74,7 +74,7 @@ Just open the link in a browser that supports camera access (Chrome, Safari).
 
 ## 🧑‍💻 Author
 
-Made by Christian Castro  
+Made by Cristian Castro  
 [GitHub Profile](https://github.com/CRlSTlANCASTRO)
 
 ---
