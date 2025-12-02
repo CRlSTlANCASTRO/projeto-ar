@@ -1,84 +1,87 @@
 # 🔢 AR Markers Project - Simple Math with Augmented Reality
 
-This is a web-based Augmented Reality (AR) application built using **A-Frame** and **AR.js**. It detects custom markers through your webcam or smartphone and performs a basic math operation: **addition**.
+Projeto de Realidade Aumentada para Operações de Soma
 
-## 📸 Demo
+Este é um projeto de Realidade Aumentada (AR) feito para funcionar direto no navegador, usando A-Frame e AR.js. Ele reconhece marcadores personalizados pela câmera do computador ou do celular e realiza uma operação de soma de forma simples e intuitiva.
 
-Try it on your phone:  
-👉 [https://CRlSTlANCASTRO.github.io/projeto-ar/](https://CRlSTlANCASTRO.github.io/projeto-ar/)
+Descrição do Projeto
 
----
+A ideia principal é permitir que o usuário aponte dois marcadores de números e, depois, um marcador de soma. Quando os três aparecem na ordem correta, o sistema mostra o resultado na tela.
+Exemplo: mostrar o marcador de “1”, depois o de “2” e, por último, o marcador de “+”. O aplicativo então exibe “1 + 2 = 3”. Após alguns segundos, ele reinicia para permitir uma nova operação.
 
-## 🎯 Project Goal
+O objetivo foi criar uma experiência prática de AR, fácil de entender e de testar, funcionando tanto no computador quanto no celular.
 
-The initial idea was to build a basic AR app that recognizes custom markers and displays numbers on top of them. The project evolved into a simple interactive **addition system**, where the app waits for:
+Como Usar
 
-1. A number marker (e.g., `1`)
-2. Another number marker (e.g., `2`)
-3. A `+` marker to trigger the sum
+Acesse o projeto pelo navegador:
+https://CRlSTlANCASTRO.github.io/projeto-ar/
 
-When all three are shown **in order**, the app displays the result (e.g., `1 + 2 = 3`) above the `+` marker, then resets for the next round.
+Permita o acesso à câmera quando o navegador pedir.
 
----
+Utilize os marcadores impressos (números e o símbolo de soma).
 
-## 🛠️ Tools & Technologies
+Mostre os marcadores seguindo esta ordem:
+primeiro um número, depois outro número, e por último o marcador de soma.
 
-- **A-Frame** `1.2.0` – for building the 3D scene
-- **AR.js** `2.1.8` – for marker detection in AR
-- **JavaScript** – logic for marker sequence and addition
-- **Canva** – used to design marker visuals (numbers and symbols)
-- **AR.js Marker Generator** – to generate `.patt` marker pattern files  
-  [https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html](https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html)
-- **GitHub Pages** – for hosting and testing on mobile
+O resultado aparecerá na tela e o sistema reiniciará automaticamente.
 
----
+O funcionamento é simples e não requer instalação.
 
-## 📂 Project Structure
+Tecnologias Utilizadas
+
+A-Frame 1.2.0 para criação da cena 3D.
+
+AR.js 2.1.8 para detecção dos marcadores.
+
+JavaScript para a lógica de reconhecimento e cálculo.
+
+Canva para criação visual dos marcadores.
+
+AR.js Marker Generator para gerar os padrões dos marcadores (.patt).
+
+GitHub Pages para hospedagem do projeto.
+
+Estrutura do Projeto
 
 projeto-ar/
-├── index.html # Main AR scene and logic
-├── markers/ # Folder with pattern files (.patt)
+├── index.html – Arquivo principal do projeto
+├── markers/ – Arquivos dos marcadores (.patt)
 │ ├── pattern-marker-1.patt
 │ ├── pattern-marker-2.patt
 │ └── pattern-marker-plus.patt
-└── assets/ # Reserved for future images, audio, etc.
+└── assets/ – Pasta reservada para imagens e outros arquivos futuros
 
+Recursos do Sistema
 
----
+Detecção dos marcadores em tempo real.
 
-## 💡 Features
+Exibição do resultado somente quando a ordem correta é seguida.
 
-- Real-time marker detection using webcam or phone camera
-- Displays result only after correct sequence: number → number → plus
-- Visual feedback using onscreen debug text
-- Auto-reset after 3 seconds to allow a new operation
-- Works smoothly on mobile via browser
+Texto de apoio na tela para mostrar o estado atual.
 
----
+Reinício automático após três segundos.
 
-## 🚀 Possible Future Updates
+Compatível com dispositivos móveis.
 
-- Add more numbers (up to 10)
-- Support for other operations (`-`, `×`, `÷`)
-- Add audio feedback or animations
-- Improve UI for better user experience
+Atualizações Futuras
 
----
+Inclusão de novos números.
 
-## 📱 Mobile Support
+Outras operações matemáticas, como subtração, multiplicação e divisão.
 
-Tested on Android and iOS through **GitHub Pages**.  
-Just open the link in a browser that supports camera access (Chrome, Safari).
+Efeitos visuais ou sonoros.
 
----
+Melhorias na interface.
 
-## 🧑‍💻 Author
+Compatibilidade com Celular
 
-Made by Cristian Castro  
-[GitHub Profile](https://github.com/CRlSTlANCASTRO)
+O projeto foi testado em Android e iOS usando o navegador com acesso à câmera.
 
----
+Autor
 
-## 📝 License
+Criado por Cristian Castro
+GitHub: https://github.com/CRlSTlANCASTRO
 
-MIT License (feel free to use, remix, and share)
+Licença
+
+O projeto utiliza a licença MIT e pode ser usado e modificado livremente.
